@@ -4,6 +4,6 @@ data class Transaction(
     val amount: Int,
     val datetime: String,
     val id: Int,
-    val `receiver`: Receiver,
+    val receiver: String,
     val sender: Sender
 )
