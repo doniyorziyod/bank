@@ -1,4 +1,4 @@
-package uz.ictschool.bank
+package uz.ictschool.bank.screens
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity

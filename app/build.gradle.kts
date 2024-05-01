@@ -108,6 +108,9 @@ dependencies {
     implementation ("com.google.accompanist:accompanist-pager-indicators:0.28.0")
     implementation("androidx.media3:media3-exoplayer:1.2.1")
     implementation("androidx.media3:media3-ui:1.2.1")
+
+    // hilt
+    implementation("androidx.hilt:hilt-navigation-compose:1.1.0-alpha01")
 }
 
 kapt {
