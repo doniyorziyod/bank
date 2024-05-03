@@ -11,6 +11,7 @@ class SharedPrefHelper(context: Context){
     private val edit = shared.edit()
 
     private val USER_NUMBER_KEY = "user_number_key"
+    private val IS_FIRST_TIME = "is_first_time"
 
     companion object{
         private var instance: SharedPrefHelper? = null
@@ -27,5 +28,13 @@ class SharedPrefHelper(context: Context){
     }
     fun getUserNumber(): String{
         return shared.getString(USER_NUMBER_KEY, "")!!
+    }
+
+
+    fun setIsFirstTime(isFirstTime: Boolean){
+        edit.putBoolean(IS_FIRST_TIME, isFirstTime).commit()
+    }
+    fun getIsFirstTime():Boolean{
+        return shared.getBoolean(IS_FIRST_TIME, false
     }
 }
