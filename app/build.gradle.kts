@@ -111,6 +111,11 @@ dependencies {
 
     // hilt
     implementation("androidx.hilt:hilt-navigation-compose:1.1.0-alpha01")
+
+    //Room database
+    implementation ("androidx.room:room-runtime:2.6.1")
+    //noinspection KaptUsageInsteadOfKsp
+    kapt ("androidx.room:room-compiler:2.6.1")
 }
 
 kapt {
