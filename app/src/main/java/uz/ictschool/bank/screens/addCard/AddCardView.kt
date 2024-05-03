@@ -17,12 +17,8 @@ import androidx.compose.ui.graphics.Color
 @Composable
 fun AddCardView(vm: AddCardViewModel) {
     val phoneNumber = vm.phoneNumber.observeAsState().value!!
+    var code = vm.code.observeAsState().value!!
     Column(Modifier.fillMaxSize()) {
-        OutlinedTextField(
-            value = phoneNumber,
-            onValueChange = { vm.updatePhoneNumber(it) },
-            modifier = Modifier.fillMaxWidth()
-        )
         TextButton(
             onClick = { vm.sendCode() },
             modifier = Modifier.fillMaxWidth(),
@@ -31,6 +27,24 @@ fun AddCardView(vm: AddCardViewModel) {
             )
         ) {
             Text(text = "Send code", color = Color.White)
+        }
+
+
+
+
+        OutlinedTextField(
+            value = code,
+            onValueChange = { vm.updateCode(it) },
+            modifier = Modifier.fillMaxWidth()
+        )
+        TextButton(
+            onClick = { vm.checkCode(code) },
+            modifier = Modifier.fillMaxWidth(),
+            colors = ButtonDefaults.textButtonColors(
+                Color(0xFF0077F5)
+            )
+        ) {
+            Text(text = "check code", color = Color.White)
         }
     }
 }

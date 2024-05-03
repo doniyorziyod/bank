@@ -17,17 +17,26 @@ import javax.inject.Inject
 @HiltViewModel
 class AddCardViewModel @Inject constructor(private val model: AddCardModel) : ViewModel() {
     var sharedPrefHelper = SharedPrefHelper.getInstance(MyApp.context)
+
     private val _phoneNumber = MutableLiveData("")
     val phoneNumber: LiveData<String> = _phoneNumber
+
+    private val _code = MutableLiveData("")
+    val code: LiveData<String> = _code
 
     fun updatePhoneNumber(new: String) {
         _phoneNumber.value = new
     }
 
-    fun sendCode(context:Context) {
+    fun updateCode(new: String) {
+        _phoneNumber.value = new
+    }
+
+    fun sendCode() {
         viewModelScope.launch {
-            val sendCode = SendCode(sharedPrefHelper.getUserNumber())
+            val sendCode = SendCode("+998906446151")
             Log.d("TAG", model.sendCode(sendCode).status)
+//            code = model.sendCode(sendCode).status
         }
     }
 
