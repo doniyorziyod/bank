@@ -1,4 +1,6 @@
 package uz.ictschool.bank.screens.home
 
-class HomeViewModel {
+import androidx.navigation.NavHostController
+
+class HomeViewModel(private val navController: NavHostController, private val model: HomeModel) {
 }
