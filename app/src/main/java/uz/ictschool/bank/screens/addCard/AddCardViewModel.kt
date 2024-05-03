@@ -12,6 +12,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class AddCardViewModel @Inject constructor(val addCardModel: AddCardModel) : ViewModel() {
+
     private val _phoneNumber = MutableLiveData("")
     val phoneNumber: LiveData<String> = _phoneNumber
 
