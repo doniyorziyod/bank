@@ -35,6 +35,6 @@ class SharedPrefHelper(context: Context){
         edit.putBoolean(IS_FIRST_TIME, isFirstTime).commit()
     }
     fun getIsFirstTime():Boolean{
-        return shared.getBoolean(IS_FIRST_TIME, false
+        return shared.getBoolean(IS_FIRST_TIME, false)
     }
 }
