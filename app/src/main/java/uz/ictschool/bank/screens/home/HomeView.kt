@@ -25,35 +25,32 @@ import androidx.compose.material.icons.rounded.DateRange
 import androidx.compose.material.icons.rounded.Email
 import androidx.compose.material.icons.rounded.Face
 import androidx.compose.material.icons.rounded.Home
-import androidx.compose.material.icons.rounded.MailOutline
 import androidx.compose.material.icons.rounded.Notifications
 import androidx.compose.material.icons.rounded.Search
 import androidx.compose.material.icons.rounded.Settings
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.NavigationBarItem
-import androidx.compose.material3.NavigationBarItemColors
 import androidx.compose.material3.NavigationBarItemDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableIntStateOf
-import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import javax.inject.Inject
+import androidx.navigation.NavController
+import androidx.navigation.NavHostController
 
-@Preview
 @Composable
-fun HomeView (vm: HomeViewModel) {
+fun HomeView (vm: HomeViewModel, navController: NavHostController) {
     val name = "Push Put"
     Column(
         Modifier
@@ -88,7 +85,7 @@ fun HomeView (vm: HomeViewModel) {
                 Color.White
             )
         ) {
-            HomeContent()
+            HomeContent(vm, navController)
         }
         val selected = remember {
             mutableIntStateOf(0)
@@ -160,8 +157,10 @@ fun HomeView (vm: HomeViewModel) {
 }
 
 @Composable
-fun HomeContent() {
-    CardView()
+fun HomeContent(vm: HomeViewModel, navController: NavController) {
+    Column (Modifier.padding(16.dp)){
+        MyCardView(onClick = {vm.onCardClicked(navController)})
+    }
     Services()
 }
 
@@ -211,13 +210,14 @@ fun ServiceItem(service: Service) {
 
 data class Service(val name: String, val imageVector: ImageVector, val color: Color)
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun CardView() {
+fun MyCardView(onClick:() -> Unit) {
     Card(
         modifier = Modifier
             .fillMaxWidth()
-            .aspectRatio(1.6f)
-            .padding(18.dp),
+            .aspectRatio(1.6f),
+        onClick = onClick,
         colors = CardDefaults.cardColors(Color(0xFF1573FF)), shape = RoundedCornerShape(24.dp)
     ) {
         Column(
