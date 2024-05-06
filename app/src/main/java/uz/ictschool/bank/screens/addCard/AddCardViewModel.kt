@@ -24,16 +24,16 @@ class AddCardViewModel @Inject constructor(private val model: AddCardModel) : Vi
         _phoneNumber.value = new
     }
 
-    fun sendCode(context:Context) {
+    fun sendCode() {
         viewModelScope.launch {
-            val sendCode = SendCode(sharedPrefHelper.getUserNumber())
+            val sendCode = SendCode(sharedPrefHelper.getUserNumber()!!)
             Log.d("TAG", model.sendCode(sendCode).status)
         }
     }
 
     fun checkCode(code:String){
         viewModelScope.launch {
-            val checkCode = CheckCode(sharedPrefHelper.getUserNumber(),code)
+            val checkCode = CheckCode(sharedPrefHelper.getUserNumber()!!,code)
             Log.d("TAG", model.checkCode(checkCode).status)
         }
     }
