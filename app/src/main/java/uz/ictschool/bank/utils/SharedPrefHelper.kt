@@ -11,6 +11,8 @@ class SharedPrefHelper(context: Context){
     private val edit = shared.edit()
 
     private val USER_NUMBER_KEY = "user_number_key"
+    private val CARD_NUMBER_KEY = "card_number_key"
+
     private val IS_FIRST_TIME = "is_first_time"
     private val PIN_CODE_KEY = "pin_code_key"
 
@@ -27,8 +29,8 @@ class SharedPrefHelper(context: Context){
     fun setUserNumber(number: String){
         edit.putString(USER_NUMBER_KEY, number).commit()
     }
-    fun getUserNumber(): String?{
-        return shared.getString(USER_NUMBER_KEY, null)
+    fun getUserNumber(): String{
+        return shared.getString(USER_NUMBER_KEY, "")!!
     }
 
 
@@ -42,7 +44,14 @@ class SharedPrefHelper(context: Context){
     fun setPinCode(pinCode: String){
         edit.putString(PIN_CODE_KEY, pinCode)
     }
-    fun getPinCode(): String?{
-        return shared.getString(PIN_CODE_KEY, null)
+    fun getPinCode(): String{
+        return shared.getString(PIN_CODE_KEY, "")!!
+    }
+
+    fun setCardNumber(card_number: String){
+        edit.putString(CARD_NUMBER_KEY, card_number).commit()
+    }
+    fun getCardNumber(): String {
+        return shared.getString(CARD_NUMBER_KEY, "")!!
     }
 }

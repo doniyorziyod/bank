@@ -7,13 +7,17 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import uz.ictschool.bank.screens.addCard.AddCardView
 import uz.ictschool.bank.screens.home.HomeView
+import uz.ictschool.bank.screens.main_screen.MainView
 import uz.ictschool.bank.screens.myCard.MyCardView
 
 @Composable
 fun AppNavigationHost(navController: NavHostController){
-    NavHost(navController = navController, startDestination = Screen.Home.route){
+    NavHost(navController = navController, startDestination = Screen.Main.route){
         composable(Screen.Home.route){
             HomeView(hiltViewModel(), navController)
+        }
+        composable(Screen.Main.route){
+            MainView(navController = navController)
         }
         composable(Screen.AddCard.route){
             AddCardView(vm = hiltViewModel())
