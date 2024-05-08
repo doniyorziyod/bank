@@ -75,7 +75,7 @@ dependencies {
     debugImplementation(libs.androidx.ui.test.manifest)
 
     ///rasm string bosa
-    implementation("io.coil-kt:coil:2.4.0")
+    implementation("io.coil-kt:coil-compose:2.6.0")
 
     ///lifecycle livedata tudum sudum
     implementation("androidx.lifecycle:lifecycle-viewmodel:2.3.1")
@@ -87,7 +87,7 @@ dependencies {
     ///api bn ishlashga
     implementation("com.squareup.retrofit2:retrofit:2.7.2")
     implementation("com.squareup.retrofit2:converter-gson:2.7.2")
-///dagger hilt
+    ///dagger hilt
     implementation("com.google.dagger:hilt-android:2.48")
     kapt("com.google.dagger:hilt-android-compiler:2.48")
 
