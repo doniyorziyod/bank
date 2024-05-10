@@ -14,6 +14,7 @@ import uz.ictschool.bank.MyApp
 import uz.ictschool.bank.models.AddCard
 import uz.ictschool.bank.models.CheckCode
 import uz.ictschool.bank.models.SendCode
+import uz.ictschool.bank.navigation.Screen
 import uz.ictschool.bank.utils.SharedPrefHelper
 import javax.inject.Inject
 
@@ -57,25 +58,20 @@ class AddCardViewModel @Inject constructor(private val model: AddCardModel) : Vi
 
 
 
-    fun addCard(code: String, cardnumber: String):String {
-        var st = ""
+    fun addCard(code: String, cardnumber: String,navController: NavController) {
         viewModelScope.launch {
             val addCard = AddCard("+998906446151", code, cardnumber)
-//            Log.d("TAG", "add_card: ${model.addCard(addCard).status}")
-                st = model.addCard(addCard).status
-            if (st ==  "Success") {
-
+            if (model.addCard(addCard).status!=  "Success") {
                 Toast.makeText(
                     MyApp.context,
                     "card number is not connected to your phone number",
                     Toast.LENGTH_SHORT
                 ).show()
             } else {
-                sharedPrefHelper.setCardNumber(cardnumber)
-                Toast.makeText(MyApp.context, "succesfullly added", Toast.LENGTH_SHORT).show()
+                navController.navigate(Screen.MyCard.route)
+                     Toast.makeText(MyApp.context, "succesfullly added", Toast.LENGTH_SHORT).show()
             }
         }
-        return st
     }
 
     fun backClick(navController: NavController) {
