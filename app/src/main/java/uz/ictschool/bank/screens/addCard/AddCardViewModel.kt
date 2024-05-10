@@ -2,13 +2,16 @@ package uz.ictschool.bank.screens.addCard
 
 import android.content.Context
 import android.util.Log
+import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import androidx.navigation.NavController
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import uz.ictschool.bank.MyApp
+import uz.ictschool.bank.models.AddCard
 import uz.ictschool.bank.models.CheckCode
 import uz.ictschool.bank.models.SendCode
 import uz.ictschool.bank.utils.SharedPrefHelper
@@ -17,24 +20,60 @@ import javax.inject.Inject
 @HiltViewModel
 class AddCardViewModel @Inject constructor(private val model: AddCardModel) : ViewModel() {
     var sharedPrefHelper = SharedPrefHelper.getInstance(MyApp.context)
-    private val _phoneNumber = MutableLiveData("")
-    val phoneNumber: LiveData<String> = _phoneNumber
+    private val _codeNumber = MutableLiveData("")
+    val codeNumber: LiveData<String> = _codeNumber
 
-    fun updatePhoneNumber(new: String) {
-        _phoneNumber.value = new
+    private val _cardNumber = MutableLiveData("")
+    val cardNumber: LiveData<String> = _cardNumber
+
+    private var _state = MutableLiveData(false)
+    var state: LiveData<Boolean> = _state
+
+    var status = ""
+
+    fun updateCardNumber(new: String) {
+        _cardNumber.value = new
+    }
+
+    fun updateCodeNumber(new: String) {
+        _codeNumber.value = new
     }
 
     fun sendCode() {
+        if (enableDisable()) {
+            viewModelScope.launch {
+                val sendCode = SendCode("+998906446151")
+                Log.d("TAG", model.sendCode(sendCode).status)
+            }
+        } else Toast.makeText(MyApp.context, "card number too short", Toast.LENGTH_SHORT).show()
+    }
+
+    fun enableDisable(): Boolean {
+        if (cardNumber.value!!.length == 16) {
+            return true
+        }
+        return false
+    }
+
+    fun addCard(code: String, cardnumber: String) {
         viewModelScope.launch {
-            val sendCode = SendCode(sharedPrefHelper.getUserNumber()!!)
-            Log.d("TAG", model.sendCode(sendCode).status)
+            val addCard = AddCard("+998906446151", code, cardnumber)
+//            Log.d("TAG", "add_card: ${model.addCard(addCard).status}")
+
+            if (model.addCard(addCard).status != "Success") {
+                Toast.makeText(
+                    MyApp.context,
+                    "card number is not connected to your phone number",
+                    Toast.LENGTH_SHORT
+                ).show()
+            } else {
+                sharedPrefHelper.setCardNumber(cardnumber)
+                Toast.makeText(MyApp.context, "succesfullly added", Toast.LENGTH_SHORT).show()
+            }
         }
     }
 
-    fun checkCode(code:String){
-        viewModelScope.launch {
-            val checkCode = CheckCode(sharedPrefHelper.getUserNumber()!!,code)
-            Log.d("TAG", model.checkCode(checkCode).status)
-        }
+    fun backClick(navController: NavController) {
+        navController.popBackStack()
     }
 }

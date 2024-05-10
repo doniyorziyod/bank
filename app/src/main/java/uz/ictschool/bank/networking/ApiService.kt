@@ -4,6 +4,8 @@ import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.POST
 import retrofit2.http.Path
+import uz.ictschool.bank.models.AddCard
+import uz.ictschool.bank.models.CardResponse
 import uz.ictschool.bank.models.CheckCode
 import uz.ictschool.bank.models.Response
 import uz.ictschool.bank.models.SendCode
@@ -14,6 +16,12 @@ interface ApiService {
 
     @GET("/cards")
     suspend fun getCards(): List<User>
+
+    @GET("/cards/{card_number}")
+    suspend fun getCardByNumber(@Path("card") card:String): CardResponse
+
+    @POST("/add_card/")
+    suspend fun addCard(@Body addCard: AddCard):Response
 
     @GET("/transactions")
     suspend fun getTransactions(): List<Transaction>
