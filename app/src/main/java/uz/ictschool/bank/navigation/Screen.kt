@@ -10,5 +10,4 @@ sealed class Screen(val route:String) {
     data object SignUp:Screen("sign_up")
     data object MyCard:Screen("my_card")
 
-
 }

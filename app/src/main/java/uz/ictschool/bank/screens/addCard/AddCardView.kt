@@ -143,7 +143,7 @@ fun AddCardView(vm: AddCardViewModel, navController: NavController) {
                 onClick = {
                     Log.d("TAG", "AddCardView: check+${codeNumber}")
 //                    vm.checkCode(codeNumber)
-                    vm.addCard(codeNumber,cardNumber)
+                    vm.addCard(codeNumber,cardNumber,navController)
                 },
                 colors = androidx.compose.material3.ButtonDefaults.textButtonColors(
                     containerColor = cardColor,
