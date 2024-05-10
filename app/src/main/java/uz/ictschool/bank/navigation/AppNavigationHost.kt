@@ -8,6 +8,8 @@ import androidx.navigation.compose.composable
 import uz.ictschool.bank.screens.addCard.AddCardView
 import uz.ictschool.bank.screens.home.HomeView
 import uz.ictschool.bank.screens.myCard.MyCardView
+import uz.ictschool.bank.screens.transfer.TransferView
+import uz.ictschool.bank.screens.transfer.confirm.ConfirmView
 
 @Composable
 fun AppNavigationHost(navController: NavHostController){
@@ -20,6 +22,12 @@ fun AppNavigationHost(navController: NavHostController){
         }
         composable(Screen.MyCard.route){
             MyCardView(vm = hiltViewModel(), navController)
+        }
+        composable(Screen.Transfer.route){
+            TransferView(tvm = hiltViewModel())
+        }
+        composable(Screen.Confirm.route){
+            ConfirmView(cvm = hiltViewModel())
         }
     }
 }
