@@ -11,6 +11,7 @@ import androidx.navigation.NavController
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import uz.ictschool.bank.MyApp
+import uz.ictschool.bank.localDataBase.AppDataBase
 import uz.ictschool.bank.models.AddCard
 import uz.ictschool.bank.models.CheckCode
 import uz.ictschool.bank.models.SendCode
@@ -20,6 +21,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class AddCardViewModel @Inject constructor(private val model: AddCardModel) : ViewModel() {
+    val db = AppDataBase.getInstance(MyApp.context)
     var sharedPrefHelper = SharedPrefHelper.getInstance(MyApp.context)
     private val _codeNumber = MutableLiveData("")
     val codeNumber: LiveData<String> = _codeNumber
@@ -68,6 +70,8 @@ class AddCardViewModel @Inject constructor(private val model: AddCardModel) : Vi
                     Toast.LENGTH_SHORT
                 ).show()
             } else {
+                db.getCardDao().addCard(model.getCardsByNUmber(cardnumber).card)
+                Log.d("TAG", "addCard: ${db.getCardDao().getMyCards().joinToString()}")
                 navController.navigate(Screen.MyCard.route)
                      Toast.makeText(MyApp.context, "succesfullly added", Toast.LENGTH_SHORT).show()
             }
