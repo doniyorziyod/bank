@@ -20,7 +20,7 @@ fun AppNavigationHost(navController: NavHostController){
             MainView(navController = navController)
         }
         composable(Screen.AddCard.route){
-            AddCardView(vm = hiltViewModel())
+            AddCardView(vm = hiltViewModel(),navController)
         }
         composable(Screen.MyCard.route){
             MyCardView(vm = hiltViewModel(), navController)
