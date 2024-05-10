@@ -90,69 +90,69 @@ fun HomeView (vm: HomeViewModel, navController: NavHostController) {
         val selected = remember {
             mutableIntStateOf(0)
         }
-        BottomNavigation(backgroundColor = Color.White, elevation = 1.dp) {
-            NavigationBarItem(
-                selected = selected.intValue == 0,
-                onClick = { if (selected.intValue != 0) selected.intValue = 0 },
-                icon = {
-                    Icon(
-                        Icons.Rounded.Home,
-                        contentDescription = ""
-                    )
-                },
-                colors = NavigationBarItemDefaults.colors(
-                    selectedIconColor = Color.White,
-                    unselectedIconColor = Color(0xFF898989),
-                    indicatorColor = Color(0xFF3629B7)
-                )
-            )
-            NavigationBarItem(
-                selected = selected.intValue == 1,
-                onClick = { if (selected.intValue != 1) selected.intValue = 1 },
-                icon = {
-                    Icon(
-                        Icons.Rounded.Search,
-                        contentDescription = ""
-                    )
-                },
-                colors = NavigationBarItemDefaults.colors(
-                    selectedIconColor = Color.White,
-                    unselectedIconColor = Color(0xFF898989),
-                    indicatorColor = Color(0xFF3629B7)
-                )
-            )
-            NavigationBarItem(
-                selected = selected.intValue == 2,
-                onClick = { if (selected.intValue != 2) selected.intValue = 2 },
-                icon = {
-                    Icon(
-                        Icons.Rounded.Email,
-                        contentDescription = ""
-                    )
-                },
-                colors = NavigationBarItemDefaults.colors(
-                    selectedIconColor = Color.White,
-                    unselectedIconColor = Color(0xFF898989),
-                    indicatorColor = Color(0xFF3629B7)
-                )
-            )
-            NavigationBarItem(
-                selected = selected.intValue == 3,
-                onClick = { if (selected.intValue != 3) selected.intValue = 3 },
-                icon = {
-                    Icon(
-                        Icons.Rounded.Settings,
-                        contentDescription = ""
-                    )
-                },
-                colors = NavigationBarItemDefaults.colors(
-                    selectedIconColor = Color.White,
-                    unselectedIconColor = Color(0xFF898989),
-                    indicatorColor = Color(0xFF3629B7)
-                )
-            )
-
-        }
+//        BottomNavigation(backgroundColor = Color.White, elevation = 1.dp) {
+//            NavigationBarItem(
+//                selected = selected.intValue == 0,
+//                onClick = { if (selected.intValue != 0) selected.intValue = 0 },
+//                icon = {
+//                    Icon(
+//                        Icons.Rounded.Home,
+//                        contentDescription = ""
+//                    )
+//                },
+//                colors = NavigationBarItemDefaults.colors(
+//                    selectedIconColor = Color.White,
+//                    unselectedIconColor = Color(0xFF898989),
+//                    indicatorColor = Color(0xFF3629B7)
+//                )
+//            )
+//            NavigationBarItem(
+//                selected = selected.intValue == 1,
+//                onClick = { if (selected.intValue != 1) selected.intValue = 1 },
+//                icon = {
+//                    Icon(
+//                        Icons.Rounded.Search,
+//                        contentDescription = ""
+//                    )
+//                },
+//                colors = NavigationBarItemDefaults.colors(
+//                    selectedIconColor = Color.White,
+//                    unselectedIconColor = Color(0xFF898989),
+//                    indicatorColor = Color(0xFF3629B7)
+//                )
+//            )
+//            NavigationBarItem(
+//                selected = selected.intValue == 2,
+//                onClick = { if (selected.intValue != 2) selected.intValue = 2 },
+//                icon = {
+//                    Icon(
+//                        Icons.Rounded.Email,
+//                        contentDescription = ""
+//                    )
+//                },
+//                colors = NavigationBarItemDefaults.colors(
+//                    selectedIconColor = Color.White,
+//                    unselectedIconColor = Color(0xFF898989),
+//                    indicatorColor = Color(0xFF3629B7)
+//                )
+//            )
+//            NavigationBarItem(
+//                selected = selected.intValue == 3,
+//                onClick = { if (selected.intValue != 3) selected.intValue = 3 },
+//                icon = {
+//                    Icon(
+//                        Icons.Rounded.Settings,
+//                        contentDescription = ""
+//                    )
+//                },
+//                colors = NavigationBarItemDefaults.colors(
+//                    selectedIconColor = Color.White,
+//                    unselectedIconColor = Color(0xFF898989),
+//                    indicatorColor = Color(0xFF3629B7)
+//                )
+//            )
+//
+//        }
     }
 }
 
