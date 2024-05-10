@@ -55,12 +55,16 @@ class AddCardViewModel @Inject constructor(private val model: AddCardModel) : Vi
         return false
     }
 
-    fun addCard(code: String, cardnumber: String) {
+
+
+    fun addCard(code: String, cardnumber: String):String {
+        var st = ""
         viewModelScope.launch {
             val addCard = AddCard("+998906446151", code, cardnumber)
 //            Log.d("TAG", "add_card: ${model.addCard(addCard).status}")
+                st = model.addCard(addCard).status
+            if (st ==  "Success") {
 
-            if (model.addCard(addCard).status != "Success") {
                 Toast.makeText(
                     MyApp.context,
                     "card number is not connected to your phone number",
@@ -71,6 +75,7 @@ class AddCardViewModel @Inject constructor(private val model: AddCardModel) : Vi
                 Toast.makeText(MyApp.context, "succesfullly added", Toast.LENGTH_SHORT).show()
             }
         }
+        return st
     }
 
     fun backClick(navController: NavController) {
