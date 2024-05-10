@@ -19,6 +19,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import uz.ictschool.bank.screens.home.HomeView
+import uz.ictschool.bank.screens.monitoring.MonitoringView
 import uz.ictschool.bank.screens.myCard.MyCardView
 
 private val screens = listOf(
@@ -85,7 +86,7 @@ fun MainView(navController: NavHostController){
                 MyCardView(vm = hiltViewModel(), navController = navController)
             }
             composable(BottomNavScreens.Search.route) {
-                HomeView(navController = navController, vm = hiltViewModel())
+                MonitoringView()
             }
             composable(BottomNavScreens.Message.route) {
                 HomeView(navController = navController, vm = hiltViewModel())
