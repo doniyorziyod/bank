@@ -1,5 +1,6 @@
 package uz.ictschool.bank.screens.main_screen
 
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.BottomNavigation
 import androidx.compose.material3.Icon
@@ -10,6 +11,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavDestination.Companion.hierarchy
 import androidx.navigation.NavGraph.Companion.findStartDestination
@@ -19,7 +21,9 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import uz.ictschool.bank.screens.home.HomeView
+import uz.ictschool.bank.screens.monitoring.MonitoringView
 import uz.ictschool.bank.screens.myCard.MyCardView
+import uz.ictschool.bank.ui.theme.myBlue
 
 private val screens = listOf(
     BottomNavScreens.Home,
@@ -27,6 +31,7 @@ private val screens = listOf(
     BottomNavScreens.Search,
     BottomNavScreens.Message,
     BottomNavScreens.Settings,
+    BottomNavScreens.Monitoring,
 
 )
 
@@ -46,6 +51,7 @@ fun MainView(navController: NavHostController){
                                 imageVector = screen.icon,
                                 contentDescription = null,
                                 //tint = Color.White
+                                modifier = Modifier.fillMaxSize().padding(15.dp)
                                )
                                },
 
@@ -67,9 +73,9 @@ fun MainView(navController: NavHostController){
                             }
                         },
                         colors = NavigationBarItemDefaults.colors(
-                            selectedIconColor = Color.White,
+                            selectedIconColor = myBlue,
                             unselectedIconColor = Color(0xFF898989),
-                            indicatorColor = Color(0xFF3629B7)
+                            //indicatorColor = Color(0xFF3629B7)
                         ),
                     )
                 }
@@ -92,6 +98,9 @@ fun MainView(navController: NavHostController){
             }
             composable(BottomNavScreens.Settings.route) {
                 HomeView(navController = navController, vm = hiltViewModel())
+            }
+            composable(BottomNavScreens.Monitoring.route) {
+                MonitoringView()
             }
         }
     }

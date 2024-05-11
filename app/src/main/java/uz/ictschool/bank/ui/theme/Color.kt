@@ -14,3 +14,5 @@ val purple= Color(0xFF3629B7)
 val gray = Color(0xFFD1BB9E)
 val cardColor = Color(0xFFFFA800)
 val cardColorSecondary = Color(0xFFFFCA73)
+val myBlue = Color(0xFF3629B7)
+
