@@ -125,7 +125,7 @@ fun SignInView(vm: SignInViewModel, navController: NavController) {
                             },
                             leadingIcon = {
                                 Icon(
-                                    painter = painterResource(id = R.drawable._998),
+                                    painter = painterResource(id = R.drawable._998_2),
                                     contentDescription = ""
                                 )
                             },
@@ -135,8 +135,10 @@ fun SignInView(vm: SignInViewModel, navController: NavController) {
                             TextStyle(color = Color.Black, fontSize = 15.sp),
                             singleLine = true,
                             shape = RoundedCornerShape(24.dp),
-                            colors = TextFieldDefaults.textFieldColors(
-                                containerColor = ColorField
+                            colors = TextFieldDefaults.colors(
+                                focusedContainerColor = ColorField,
+                                unfocusedContainerColor = ColorField,
+                                disabledContainerColor = ColorField,
                             )
                         )
                     }
