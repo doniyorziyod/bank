@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
@@ -48,6 +49,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.NavHostController
+import uz.ictschool.bank.models.Card
 
 @Composable
 fun HomeView (vm: HomeViewModel, navController: NavHostController) {
@@ -159,7 +161,7 @@ fun HomeView (vm: HomeViewModel, navController: NavHostController) {
 @Composable
 fun HomeContent(vm: HomeViewModel, navController: NavController) {
     Column (Modifier.padding(16.dp)){
-        MyCardView(onClick = {vm.onCardClicked(navController)})
+        MyCardView(onClick = {vm.onCardClicked(navController)},vm.getCard())
     }
     Services()
 }
@@ -212,7 +214,7 @@ data class Service(val name: String, val imageVector: ImageVector, val color: Co
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun MyCardView(onClick:() -> Unit) {
+fun MyCardView(onClick:() -> Unit,card:Card) {
     Card(
         modifier = Modifier
             .fillMaxWidth()
@@ -226,13 +228,14 @@ fun MyCardView(onClick:() -> Unit) {
                 .padding(horizontal = 18.dp, vertical = 24.dp),
             verticalArrangement = Arrangement.SpaceBetween
         ) {
-            Text(text = "John Smith", color = Color.White, fontSize = 22.sp)
+            Text(text = card.name, color = Color.White, fontSize = 22.sp)
             Column {
-                Text(text = "Amazon Platinum", color = Color.White, fontSize = 16.sp)
-                Text(text = "4756 •••• •••• 9018", color = Color.White, fontSize = 22.sp)
-                Text(text = "$ 3 469.45", color = Color.White, fontSize = 22.sp)
+               Text(text = card.number, color = Color.White, fontSize = 22.sp)
+                Text(text = card.balance.toString()+" sum", color = Color.White, fontSize = 22.sp)
             }
         }
     }
+    
+    Spacer(modifier = Modifier.height(20.dp))
 
 }

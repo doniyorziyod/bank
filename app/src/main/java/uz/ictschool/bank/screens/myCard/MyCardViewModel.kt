@@ -9,6 +9,8 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 import uz.ictschool.bank.MyApp
+import uz.ictschool.bank.localDataBase.AppDataBase
+import uz.ictschool.bank.models.Card
 import uz.ictschool.bank.models.User
 import uz.ictschool.bank.navigation.Screen
 import uz.ictschool.bank.utils.SharedPrefHelper
@@ -17,30 +19,22 @@ import javax.inject.Inject
 @HiltViewModel
 class MyCardViewModel @Inject constructor(val model: MyCardModel) : ViewModel() {
 
-    var sharedPrefHelper = SharedPrefHelper.getInstance(MyApp.context)
-
-
-    private var _cards = MutableStateFlow<List<User>>(emptyList())
-    var cards: StateFlow<List<User>> = _cards
+    var db = AppDataBase.getInstance(MyApp.context)
 
     fun backButtonClick(navController: NavController) {
-        navController.navigate(Screen.AddCard.route)
+        navController.popBackStack()
     }
 
-    fun getCards() {
-        viewModelScope.launch {
-            _cards.value = model.getCards()
+    fun getCard(): Card {
+        if (db.getCardDao().getMyCards().isNullOrEmpty()){
+            return Card(0,0,"you dont have card yet to create one tap here","","","")
         }
+        return db.getCardDao().getMyCards().last()
     }
 
-    fun getMyCard(card_num:String){
-        viewModelScope.launch {
-            model.getCardsByNUmber(card_num)
-        }
+    fun getAllCards(): List<Card> {
+        return db.getCardDao().getMyCards()
     }
-
-
-
 
     init {
 

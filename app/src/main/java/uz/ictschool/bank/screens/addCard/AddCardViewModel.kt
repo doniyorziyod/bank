@@ -13,6 +13,7 @@ import kotlinx.coroutines.launch
 import uz.ictschool.bank.MyApp
 import uz.ictschool.bank.localDataBase.AppDataBase
 import uz.ictschool.bank.models.AddCard
+import uz.ictschool.bank.models.Card
 import uz.ictschool.bank.models.CheckCode
 import uz.ictschool.bank.models.SendCode
 import uz.ictschool.bank.navigation.Screen
@@ -59,23 +60,41 @@ class AddCardViewModel @Inject constructor(private val model: AddCardModel) : Vi
     }
 
 
-
-    fun addCard(code: String, cardnumber: String,navController: NavController) {
+    fun addCard(code: String, cardnumber: String, navController: NavController) {
         viewModelScope.launch {
             val addCard = AddCard("+998906446151", code, cardnumber)
-            if (model.addCard(addCard).status!=  "Success") {
+            if (model.addCard(addCard).status != "Success") {
                 Toast.makeText(
                     MyApp.context,
                     "card number is not connected to your phone number",
                     Toast.LENGTH_SHORT
                 ).show()
             } else {
-                db.getCardDao().addCard(model.getCardsByNUmber(cardnumber).card)
-                Log.d("TAG", "addCard: ${db.getCardDao().getMyCards().joinToString()}")
-                navController.navigate(Screen.MyCard.route)
-                     Toast.makeText(MyApp.context, "succesfullly added", Toast.LENGTH_SHORT).show()
+                if (checkcard(model.getCardsByNUmber(cardnumber).card)) {
+                    navController.navigate(Screen.MyCard.route)
+                    Toast.makeText(
+                        MyApp.context,
+                        "your card has been already added to ur account",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                } else {
+                    db.getCardDao().addCard(model.getCardsByNUmber(cardnumber).card)
+                    Log.d("TAG", "addCard: ${db.getCardDao().getMyCards().joinToString()}")
+                    navController.navigate(Screen.MyCard.route)
+                    Toast.makeText(MyApp.context, "succesfullly added", Toast.LENGTH_SHORT).show()
+                }
             }
         }
+    }
+
+    fun checkcard(card: Card): Boolean {
+        for (i in db.getCardDao().getMyCards()) {
+            if (i == card) {
+                return true
+            }
+            return false
+        }
+        return false
     }
 
     fun backClick(navController: NavController) {

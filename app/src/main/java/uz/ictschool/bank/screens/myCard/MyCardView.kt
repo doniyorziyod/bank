@@ -5,6 +5,8 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.material.IconButton
 import androidx.compose.material.Scaffold
 import androidx.compose.material.TopAppBar
@@ -23,6 +25,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.navigation.NavHostController
+import uz.ictschool.bank.navigation.Screen
 import uz.ictschool.bank.screens.home.MyCardView
 
 @Composable
@@ -30,8 +33,13 @@ fun MyCardView(vm: MyCardViewModel, navController: NavHostController) {
     Scaffold(topBar = { TopBar(vm, navController) }) {
         Column(Modifier.padding(top = it.calculateTopPadding(), start = 16.dp, end = 16.dp)) {
             Spacer(modifier = Modifier.height(16.dp))
-            MyCardView(onClick = {})
-            AddCardButton(onclick = {vm.backButtonClick(navController)})
+            LazyColumn(modifier = Modifier.padding(10.dp).fillMaxWidth()) {
+                items(vm.getAllCards()) {
+                    MyCardView(onClick = {},it)
+                }
+            }
+
+            AddCardButton(onclick = {navController.navigate(Screen.AddCard.route)})
         }
     }
 }
