@@ -6,13 +6,15 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.navigation.NavController
 import dagger.hilt.android.lifecycle.HiltViewModel
+import dagger.hilt.android.qualifiers.ApplicationContext
 import uz.ictschool.bank.R
 import uz.ictschool.bank.localDataBase.AppDataBase
 import uz.ictschool.bank.models.CustomTransaction
 import uz.ictschool.bank.navigation.Screen
+import javax.inject.Inject
 
 @HiltViewModel
-class TransferViewModel(private val navController: NavController, context: Context) :ViewModel(){
+class TransferViewModel @Inject constructor(val model: TransferModel, @ApplicationContext context: Context) :ViewModel(){
 
     private val dao = AppDataBase.getInstance(context).getUserDao()
 
@@ -26,6 +28,10 @@ class TransferViewModel(private val navController: NavController, context: Conte
     val selectedTransactionType: LiveData<Int> = _selectedTransactionType
 
     val beneficiaryList = dao.getAllUsers()
+
+    init {
+        _selectedTransactionType.value = 1
+    }
 
     val transactionList = mutableListOf<CustomTransaction>(
         CustomTransaction(1, R.drawable.creditcard_ic, "Transfer via card number"),
@@ -45,7 +51,7 @@ class TransferViewModel(private val navController: NavController, context: Conte
     private val _confirmAmount = MutableLiveData("")
     val confirmAmount: LiveData<String> = _confirmAmount
 
-    fun onConfirmButton(){
+    fun onConfirmButton(navController: NavController){
         navController.navigate(Screen.Confirm.route)
     }
 

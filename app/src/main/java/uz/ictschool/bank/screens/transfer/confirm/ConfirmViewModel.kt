@@ -6,9 +6,10 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.navigation.NavController
 import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
 
 @HiltViewModel
-class ConfirmViewModel(private val navController: NavController, context: Context): ViewModel() {
+class ConfirmViewModel @Inject constructor(val model:ConfirmModel): ViewModel() {
 
     private val _fromCard = MutableLiveData("")
     val fromCard: LiveData<String> = _fromCard

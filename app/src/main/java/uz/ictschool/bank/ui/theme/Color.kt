@@ -17,3 +17,4 @@ val cardColorSecondary = Color(0xFFFFCA73)
 
 val TransferGreyPrimary = Color(0xFFCBCBCB)
 val TransferBluePrimary = Color(0xFF3629B7)
+val TransferGreyLight = Color(0xFFF2F1F9)

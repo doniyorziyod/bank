@@ -43,34 +43,35 @@ fun ConfirmView(cvm: ConfirmViewModel){
         .fillMaxSize()
         .padding(10.dp)
         .verticalScroll(rememberScrollState())) {
-        TopAppBar(title = { Text(text = "Transfer") }, navigationIcon = {
+        TopAppBar(title = { Text(text = "Transfer", color = Color.Black) }, navigationIcon = {
             Icon(
                 imageVector = Icons.Default.KeyboardArrowLeft,
-                contentDescription = null
+                contentDescription = null,
+                tint = Color.Black
             )
-        })
+        }, backgroundColor = Color.White, elevation = 0.dp)
         Spacer(modifier = Modifier.height(10.dp))
         Text(text = "Confirm transaction information", fontSize = 14.sp, color = TransferGreyPrimary)
         Spacer(modifier = Modifier.height(8.dp))
         Text(text = "From", fontSize = 14.sp, color = TransferGreyPrimary)
         Spacer(modifier = Modifier.height(4.dp))
-        InfoOutlinedEditText(onValueChange = {fromCard = it}, value = fromCard, keyboardType = KeyboardType.Number)
+        InfoOutlinedEditText(onValueChange = {fromCard = it}, value = fromCard, keyboardType = KeyboardType.Number, label = "")
         Spacer(modifier = Modifier.height(15.dp))
         Text(text = "To", fontSize = 14.sp, color = TransferGreyPrimary)
         Spacer(modifier = Modifier.height(4.dp))
-        InfoOutlinedEditText(onValueChange = {toName = it}, value = toName, keyboardType = KeyboardType.Text)
+        InfoOutlinedEditText(onValueChange = {toName = it}, value = toName, keyboardType = KeyboardType.Text, label = "")
         Spacer(modifier = Modifier.height(15.dp))
         Text(text = "Transaction fee", fontSize = 14.sp, color = TransferGreyPrimary)
         Spacer(modifier = Modifier.height(4.dp))
-        InfoOutlinedEditText(onValueChange = {toName = it}, value = toName, keyboardType = KeyboardType.Number)
+        InfoOutlinedEditText(onValueChange = {toName = it}, value = toName, keyboardType = KeyboardType.Number, label = "")
         Spacer(modifier = Modifier.height(15.dp))
         Text(text = "Content", fontSize = 14.sp, color = TransferGreyPrimary)
         Spacer(modifier = Modifier.height(4.dp))
-        InfoOutlinedEditText(onValueChange = {content = it}, value = content, keyboardType = KeyboardType.Text)
+        InfoOutlinedEditText(onValueChange = {content = it}, value = content, keyboardType = KeyboardType.Text, label = "")
         Spacer(modifier = Modifier.height(15.dp))
         Text(text = "Amount", fontSize = 14.sp, color = TransferGreyPrimary)
         Spacer(modifier = Modifier.height(4.dp))
-        InfoOutlinedEditText(onValueChange = {content = it}, value = content, keyboardType = KeyboardType.Number)
+        InfoOutlinedEditText(onValueChange = {content = it}, value = content, keyboardType = KeyboardType.Number, label = "")
         Spacer(modifier = Modifier.height(25.dp))
         Text(text = "Get OTP to verify transaction", fontSize = 14.sp, color = TransferGreyPrimary)
         Spacer(modifier = Modifier.height(4.dp))
@@ -100,7 +101,7 @@ fun ConfirmView(cvm: ConfirmViewModel){
             }
         }
         Spacer(modifier = Modifier.height(30.dp))
-        Button(onClick = { /*TODO*/ }, modifier = Modifier.fillMaxWidth(), colors = ButtonDefaults.buttonColors(TransferBluePrimary)) {
+        Button(onClick = {  }, modifier = Modifier.fillMaxWidth(), colors = ButtonDefaults.buttonColors(TransferBluePrimary)) {
             Text(text = "Confirm", fontSize = 17.sp, color = Color.White)
         }
         Spacer(modifier = Modifier.height(10.dp))

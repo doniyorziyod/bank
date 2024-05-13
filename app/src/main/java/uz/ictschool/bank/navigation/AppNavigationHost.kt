@@ -28,7 +28,7 @@ fun AppNavigationHost(navController: NavHostController){
             MyCardView(vm = hiltViewModel(), navController)
         }
         composable(Screen.Transfer.route){
-            TransferView(tvm = hiltViewModel())
+            TransferView(tvm = hiltViewModel(), navController)
         }
         composable(Screen.Confirm.route){
             ConfirmView(cvm = hiltViewModel())

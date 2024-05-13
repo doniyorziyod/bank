@@ -2,6 +2,7 @@ package uz.ictschool.bank.screens.home
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -161,11 +162,11 @@ fun HomeContent(vm: HomeViewModel, navController: NavController) {
     Column (Modifier.padding(16.dp)){
         MyCardView(onClick = {vm.onCardClicked(navController)})
     }
-    Services()
+    Services(vm, navController)
 }
 
 @Composable
-fun Services() {
+fun Services(homeViewModel: HomeViewModel, navController: NavController) {
     val services = listOf(
         Service("Credit Card", Icons.Rounded.AccountBox, Color(0xFFFF5722)),
         Service("Account and Card", Icons.Rounded.DateRange, Color(0xFF8BC34A)),
@@ -177,18 +178,21 @@ fun Services() {
     )
     LazyVerticalGrid(columns = GridCells.Fixed(3)) {
         items(services) {
-            ServiceItem(it)
+            ServiceItem(it, homeViewModel, navController)
         }
     }
 }
 
 @Composable
-fun ServiceItem(service: Service) {
+fun ServiceItem(service: Service, homeViewModel: HomeViewModel, navController: NavController) {
     Card(
         colors = CardDefaults.cardColors(Color.White),
         modifier = Modifier
             .padding(12.dp)
-            .fillMaxWidth(),
+            .fillMaxWidth()
+            .clickable {
+                       if (service.name == "Transfer") homeViewModel.onTransferClicked(navController = navController)
+            },
         elevation = CardDefaults.cardElevation(1.dp, 0.dp)
     ) {
         Column(

@@ -11,4 +11,8 @@ class HomeViewModel @Inject constructor(private val model: HomeModel):ViewModel(
     fun onCardClicked(navController: NavController) {
         navController.navigate(Screen.MyCard.route)
     }
+
+    fun onTransferClicked(navController: NavController){
+        navController.navigate(Screen.Transfer.route)
+    }
 }
