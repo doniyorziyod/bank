@@ -60,15 +60,7 @@ fun SignInView(vm: SignInViewModel, navController: NavController) {
                 verticalAlignment = Alignment.CenterVertically,
                 modifier = Modifier.padding(start = 10.dp, top = 16.dp, bottom = 16.dp)
             ) {
-                IconButton(onClick = { /*TODO*/ }) {
-                    Icon(
-                        painter = painterResource(id = R.drawable.back_icon),
-                        contentDescription = "",
-                        Modifier.size(22.dp),
-                        tint = Color.White
-                    )
 
-                }
 
                 Text(
                     text = "Sign in",
@@ -143,7 +135,7 @@ fun SignInView(vm: SignInViewModel, navController: NavController) {
                         )
                     }
                 }
-                Spacer(modifier = Modifier.height(260.dp))
+                Spacer(modifier = Modifier.height(30.dp))
                 Button(
                     onClick = {
                         if (phoneNumber.length != 9) Toast.makeText(
@@ -154,7 +146,7 @@ fun SignInView(vm: SignInViewModel, navController: NavController) {
                         else vm.sendCode(navController, context)
                     }, colors = ButtonDefaults.buttonColors(purple), modifier = Modifier
                         .fillMaxWidth()
-                        .padding(start = 10.dp, end = 10.dp)
+                        .padding(start = 30.dp, end = 30.dp)
                 ) {
                     Text(
                         text = "Continue",

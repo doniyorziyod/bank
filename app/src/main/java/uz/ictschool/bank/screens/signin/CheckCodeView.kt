@@ -1,5 +1,6 @@
 package uz.ictschool.bank.screens.signin
 
+import androidx.activity.compose.LocalOnBackPressedDispatcherOwner
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -39,6 +40,7 @@ import uz.ictschool.bank.ui.theme.ColorField
 fun CheckCodeView(vm: CheckCodeViewModel, navController: NavController, phoneNumber:String){
     val codeNumber = vm.code.observeAsState().value!!
     val context = LocalContext.current
+    val bacDispatcher=LocalOnBackPressedDispatcherOwner.current?.onBackPressedDispatcher
     Box(
         Modifier
             .background(Color.White)
@@ -51,7 +53,7 @@ fun CheckCodeView(vm: CheckCodeViewModel, navController: NavController, phoneNum
                 verticalAlignment = Alignment.CenterVertically,
                 modifier = Modifier.padding(start = 10.dp, top = 16.dp, bottom = 16.dp)
             ) {
-                IconButton(onClick = { /*TODO*/ }) {
+                IconButton(onClick = { bacDispatcher?.onBackPressed() }) {
                     Icon(
                         painter = painterResource(id = R.drawable.back_icon),
                         contentDescription = "",

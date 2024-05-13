@@ -52,8 +52,7 @@ fun Splash(navController: NavController) {
         )
         Row(
             modifier = Modifier
-                .padding(top = 350.dp)
-                .align(Alignment.TopCenter)
+                .align(Alignment.Center)
                 .wrapContentSize(),
             verticalAlignment = Alignment.CenterVertically
         ) {

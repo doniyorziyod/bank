@@ -38,12 +38,13 @@ import androidx.navigation.NavController
 import uz.ictschool.bank.R
 import uz.ictschool.bank.models.PagerItem
 import uz.ictschool.bank.navigation.Screen
+import uz.ictschool.bank.ui.theme.purple
 import uz.ictschool.bank.utils.SharedPrefHelper
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun Welcome(navController: NavController) {
-    val buttonColor = Color(0xFF35A1FF)
+    val buttonColor = Color(0xFF0097d8)
     val pagerState = rememberPagerState(pageCount = {
         3
     })
@@ -60,23 +61,23 @@ fun Welcome(navController: NavController) {
             .background(Color.White),
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
-        Spacer(modifier = Modifier.height(50.dp))
-        Text(text = "Welcome to the", fontSize = 32.sp, color = Blue)
+        Spacer(modifier = Modifier.height(35.dp))
+        Text(text = "Welcome to the", fontSize = 32.sp, color = buttonColor)
         Row(
             modifier = Modifier
-                .height(65.dp)
+                .height(55.dp)
                 .fillMaxWidth(),
             horizontalArrangement = Arrangement.Center,
             verticalAlignment = Alignment.CenterVertically
         ) {
-            Text(text = "Bank", fontSize = 42.sp, color = Color.Black)
+            Text(text = "Bank", fontSize = 35.sp, color = Color.Black)
             Image(
                 painter = painterResource(id = R.drawable.logo),
                 contentDescription = "logo",
-                Modifier.size(40.dp)
+                Modifier.size(33.dp)
             )
         }
-        Spacer(modifier = Modifier.height(75.dp))
+        Spacer(modifier = Modifier.height(35.dp))
         HorizontalPager(state = pagerState) { index ->
             Column(
                 Modifier
@@ -124,7 +125,7 @@ fun Welcome(navController: NavController) {
         ) {
             repeat(pagerState.pageCount) { iteration ->
                 val color =
-                    if (pagerState.currentPage == iteration) Blue else buttonColor
+                    if (pagerState.currentPage == iteration) purple else buttonColor
                 Box(
                     modifier = Modifier
                         .padding(2.dp)
@@ -134,7 +135,7 @@ fun Welcome(navController: NavController) {
                 )
             }
         }
-        Spacer(modifier = Modifier.height(100.dp))
+        Spacer(modifier = Modifier.height(35.dp))
         Button(
             onClick = {
                 SharedPrefHelper.getInstance(context).setIsFirstTime(false)
