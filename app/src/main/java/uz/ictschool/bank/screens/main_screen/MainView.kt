@@ -11,6 +11,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavDestination.Companion.hierarchy
@@ -29,7 +31,7 @@ private val screens = listOf(
     BottomNavScreens.Home,
     //BottomNavScreens.Profile,
     BottomNavScreens.Search,
-    BottomNavScreens.Message,
+    //BottomNavScreens.Message,
     BottomNavScreens.Settings,
     BottomNavScreens.Monitoring,
 
@@ -51,7 +53,9 @@ fun MainView(navController: NavHostController){
                                 imageVector = screen.icon,
                                 contentDescription = null,
                                 //tint = Color.White
-                                modifier = Modifier.fillMaxSize().padding(15.dp)
+                                modifier = Modifier
+                                    .fillMaxSize()
+                                    .padding(15.dp)
                                )
                                },
 
