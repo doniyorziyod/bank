@@ -9,6 +9,9 @@ sealed class Screen(val route:String) {
     data object SignIn:Screen("sign_in")
     data object SignUp:Screen("sign_up")
     data object MyCard:Screen("my_card")
+    data object Welcome:Screen("Welcome")
+    data object CheckCode:Screen("check_code/{phone}")
+
 
 
 }
