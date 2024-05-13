@@ -13,5 +13,4 @@ sealed class Screen(val route:String) {
     data object CheckCode:Screen("check_code/{phone}")
 
 
-
 }

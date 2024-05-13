@@ -17,7 +17,7 @@ interface ApiService {
     @GET("/cards")
     suspend fun getCards(): List<User>
 
-    @GET("/cards/{card_number}")
+    @GET("/card/{card}")
     suspend fun getCardByNumber(@Path("card") card:String): CardResponse
 
     @POST("/add_card/")
